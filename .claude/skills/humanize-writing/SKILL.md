@@ -56,10 +56,16 @@ These sentence shapes are the strongest tells. Fix the pattern, not just the wor
   transformative." Drop the negation and state the positive claim directly.
 - **Rhetorical question then answer.** "So what does this mean? It means…"
   Delete the question and make the statement.
-- **Em-dash punchlines.** AI uses em dashes for dramatic asides and reveals.
-  Keep an em dash only for a genuine interruption; otherwise convert to a comma,
-  colon, semicolon, period, or rewrite. If the text is riddled with them, strip
-  most.
+- **Em dashes ("—") — remove them all.** This is the single most-cited AI tell
+  since early 2025; many readers now flag any em dash as machine-written
+  regardless of how well it's used. Default to **zero em dashes** in the output.
+  Replace each one by the meaning it carries:
+  - aside / interruption → wrap in commas or parentheses
+  - list intro or reveal → colon
+  - linked independent clauses → semicolon, or split into two sentences
+  - never just swap "—" for a hyphen "-"; rewrite the punctuation properly.
+  Apply the same rule to **en dashes ("–")**: use a hyphen in ranges
+  (2008-2012) and "to" in date spans (Apr 2022 to Present).
 - **Mirror / "from X to Y" ranges** on things that aren't a real scale
   ("from startups to enterprises"). Replace with concrete examples.
 - **Sentence rhythm.** AI writes uniform medium-length sentences. Vary it:
@@ -102,7 +108,8 @@ Match that profile instead of imposing a default neutral tone.
 ## Quick self-check before returning
 
 - Any forced triads left? Any "not just… but…"? Any rhetorical Q+A?
-- Em dashes only where a real interruption needs one?
+- **Zero em dashes ("—") and zero en dashes ("–")?** This is a hard pass/fail.
+  Search the output for both characters; any hit means it isn't done.
 - Do sentence lengths vary?
 - Is there a visible point of view, not just balanced hedging?
 - Are vague claims replaced with specifics, or flagged where facts are missing?

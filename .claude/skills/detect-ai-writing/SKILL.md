@@ -12,10 +12,14 @@ fix applied, hand off to the `humanize-writing` skill.
 ## Important framing
 
 No detector is certain, and confident human writing can share surface features
-with AI prose. Judge by **clusters**, not single hits. One em dash means
-nothing. Em dashes plus forced triads plus "delve" plus a tidy "In conclusion"
-section together are a strong signal. Always report findings as evidence and a
-confidence level, never as a verdict of fact.
+with AI prose. Judge most tells by **clusters**, not single hits.
+
+The one exception is the **em dash ("—")**. Since early 2025 it is the single
+most-recognized AI signature, and many readers now flag any em dash on sight.
+Treat every em dash (and en dash "–") as a hard tell: report each occurrence
+individually with its location, and call it out even if nothing else is wrong.
+For all other categories, a cluster is what raises confidence. Always report
+findings as evidence and a confidence level, never as a verdict of fact.
 
 ## How to run the audit
 
@@ -38,11 +42,14 @@ crucial, vital, pivotal, foster, embark on a journey, navigate (figurative).
 core," "the real question is," "in order to," "due to the fact that," "in
 today's fast-paced world," "a wide range of."
 
+**Em / en dashes (hard tell — count every one)**
+- Em dash "—": flag each occurrence individually, wherever it appears.
+- En dash "–": flag each one; ranges should use a hyphen or "to".
+
 **Structural tells (weighted heavily)**
 - Rule of three / forced triads, especially with a longer third item.
 - "Not just X, but Y" and other negative parallelism.
 - Rhetorical question immediately answered.
-- Em / en dashes used for dramatic asides or punchlines.
 - "From X to Y" ranges on non-scales.
 - Uniform sentence length and rhythm throughout.
 - Copula avoidance: "serves as," "stands as," "acts as" where "is" fits.

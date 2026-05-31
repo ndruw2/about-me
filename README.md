@@ -1,4 +1,4 @@
-# Indra Bayu — Resume Site
+# Indra Bayu | Resume Site
 
 A fast, responsive, single-page resume site for **Indra Bayu**, Principal Solutions
 Architect & AI Platform Leader. Built as a zero-dependency static site (plain
@@ -25,7 +25,7 @@ _headers        Cloudflare Pages security & cache headers
 
 ## Local preview
 
-No tooling required — just open `index.html`, or serve the folder:
+No tooling required. Just open `index.html`, or serve the folder:
 
 ```bash
 python3 -m http.server 8080
@@ -34,10 +34,10 @@ python3 -m http.server 8080
 
 ## Deploy to Cloudflare Pages
 
-### Option A — Connect to Git (recommended)
+### Option A: Connect to Git (recommended)
 
 1. Push this repo to GitHub.
-2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**.
+2. In the Cloudflare dashboard: **Workers & Pages > Create > Pages > Connect to Git**.
 3. Select this repository and branch.
 4. Build settings:
    - **Framework preset:** `None`
@@ -45,7 +45,7 @@ python3 -m http.server 8080
    - **Build output directory:** `/`
 5. **Save and Deploy.** Every push redeploys automatically.
 
-### Option B — Wrangler CLI (direct upload)
+### Option B: Wrangler CLI (direct upload)
 
 ```bash
 npm install -g wrangler
