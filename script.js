@@ -2,24 +2,98 @@
    Indra Bayu - Resume site interactions & data
    ============================================================ */
 
+/* ---- Lucide icons (inlined: the CSP blocks third-party scripts,
+        and the site stays zero-dependency / no build step) ---- */
+const ICON_PATHS = {
+  "layout-grid":
+    '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+  "shield-check":
+    '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  cpu:
+    '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/>',
+  lock:
+    '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  "shopping-cart":
+    '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
+  database:
+    '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
+  cloud:
+    '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+  smartphone:
+    '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
+  "git-branch":
+    '<line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
+  infinity:
+    '<path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/>',
+  "share-2":
+    '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>',
+  "wifi-off":
+    '<path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/>',
+  radio:
+    '<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>',
+  users:
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  "trending-up":
+    '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  globe:
+    '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+};
+
+const icon = (name) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${
+    ICON_PATHS[name] || ""
+  }</svg>`;
+
 /* ---- Core competencies ---- */
 const SKILLS = [
-  "Enterprise Solutions Architecture",
-  "Production Cybersecurity Architecture",
-  "AI / ML Platform Integration",
-  "UU PDP / PDPL Data Protection Compliance",
-  "Omnichannel & E-Commerce Platforms",
-  "Data Warehouse & AI/ML Pipelines",
-  "Cloud Architecture (AWS, Azure, GCP)",
-  "Mobile (iOS / Android) Platforms",
-  "Microservices & Event-Driven Design",
-  "DevOps, CI/CD & FinOps",
-  "API Gateway & System Integration",
-  "Offline-First POS at National Scale",
-  "IoT / MQTT & Real-Time Streaming",
-  "Vendor & Cross-Functional Leadership",
-  "P&L and Country-Level Operations",
-  "Vision 2030 Digital Transformation",
+  { icon: "layout-grid", label: "Enterprise Solutions Architecture" },
+  { icon: "shield-check", label: "Production Cybersecurity Architecture" },
+  { icon: "cpu", label: "AI / ML Platform Integration" },
+  { icon: "lock", label: "UU PDP / PDPL Data Protection Compliance" },
+  { icon: "shopping-cart", label: "Omnichannel & E-Commerce Platforms" },
+  { icon: "database", label: "Data Warehouse & AI/ML Pipelines" },
+  { icon: "cloud", label: "Cloud Architecture (AWS, Azure, GCP)" },
+  { icon: "smartphone", label: "Mobile (iOS / Android) Platforms" },
+  { icon: "git-branch", label: "Microservices & Event-Driven Design" },
+  { icon: "infinity", label: "DevOps, CI/CD & FinOps" },
+  { icon: "share-2", label: "API Gateway & System Integration" },
+  { icon: "wifi-off", label: "Offline-First POS at National Scale" },
+  { icon: "radio", label: "IoT / MQTT & Real-Time Streaming" },
+  { icon: "users", label: "Vendor & Cross-Functional Leadership" },
+  { icon: "trending-up", label: "P&L and Country-Level Operations" },
+  { icon: "globe", label: "Vision 2030 Digital Transformation" },
+];
+
+/* ---- Technology stack ---- */
+const TECH_STACK = [
+  {
+    group: "Cloud & Infrastructure",
+    items: [
+      "GCP", "AWS", "Azure", "Kubernetes", "Docker", "Terraform",
+      "Cloudflare", "CI/CD", "Linux",
+    ],
+  },
+  {
+    group: "Data & AI",
+    items: [
+      "BigQuery", "Kafka", "MQTT", "Airflow", "LangGraph", "Vertex AI",
+      "Python", "Looker Studio",
+    ],
+  },
+  {
+    group: "Backend & Platform",
+    items: [
+      "Go", "Node.js", "PostgreSQL", "MySQL", "Redis", "REST & gRPC",
+      "API Gateway", "iOS & Android",
+    ],
+  },
+  {
+    group: "Security & Compliance",
+    items: [
+      "WAF & DDoS", "SIEM", "Zero Trust / SASE", "IAM", "Secrets Management",
+      "Pentest Cycle", "UU PDP", "Saudi PDPL", "NCA ECC",
+    ],
+  },
 ];
 
 /* ---- Professional experience ---- */
@@ -100,13 +174,31 @@ const EXPERIENCE = [
   },
 ];
 
-/* ---- Render skills ---- */
+/* ---- Render competency cards ---- */
 (function renderSkills() {
   const grid = document.getElementById("skillsGrid");
   if (!grid) return;
   grid.innerHTML = SKILLS.map(
-    (s) =>
-      `<div class="skill reveal"><span class="skill__dot" aria-hidden="true"></span>${s}</div>`
+    (s) => `
+    <div class="skill reveal">
+      <span class="skill__icon">${icon(s.icon)}</span>
+      <span class="skill__text">${s.label}</span>
+    </div>`
+  ).join("");
+})();
+
+/* ---- Render tech stack badges ---- */
+(function renderStack() {
+  const wrap = document.getElementById("techStack");
+  if (!wrap) return;
+  wrap.innerHTML = TECH_STACK.map(
+    (g) => `
+    <div class="stack__group reveal">
+      <h3 class="stack__label">${g.group}</h3>
+      <div class="stack__items">
+        ${g.items.map((t) => `<span class="badge">${t}</span>`).join("")}
+      </div>
+    </div>`
   ).join("");
 })();
 
@@ -154,9 +246,57 @@ document.getElementById("year").textContent = new Date().getFullYear();
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
 
-/* ---- Reveal on scroll ---- */
+/* ---- Active nav indicator (scroll spy) ---- */
+(function navSpy() {
+  const links = Array.from(document.querySelectorAll('.nav__links a[href^="#"]'));
+  const entries = links
+    .map((link) => ({ link, section: document.getElementById(link.getAttribute("href").slice(1)) }))
+    .filter((e) => e.section);
+  if (!entries.length) return;
+
+  const OFFSET = 120; // clears the sticky nav
+  let queued = false;
+
+  const update = () => {
+    queued = false;
+    const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+    // Last section whose top has crossed the offset line; bottom of page always wins.
+    let active = atBottom ? entries[entries.length - 1] : null;
+    if (!active) {
+      for (const e of entries) {
+        if (e.section.getBoundingClientRect().top <= OFFSET) active = e;
+      }
+    }
+    entries.forEach((e) => e.link.classList.toggle("is-active", e === active));
+  };
+
+  const onScroll = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+})();
+
+/* ---- Staggered reveal on scroll ---- */
 (function reveal() {
-  const items = document.querySelectorAll(".reveal");
+  const items = Array.from(document.querySelectorAll(".reveal"));
+  if (!items.length) return;
+
+  // Stagger siblings within the same container, capped so nothing lags badly.
+  const seen = new Map();
+  const STEP_MS = 70;
+  const MAX_STEPS = 7;
+  items.forEach((el) => {
+    const parent = el.parentElement;
+    const i = seen.get(parent) ?? 0;
+    seen.set(parent, i + 1);
+    el.style.setProperty("--reveal-delay", `${Math.min(i, MAX_STEPS) * STEP_MS}ms`);
+  });
+
   if (!("IntersectionObserver" in window)) {
     items.forEach((el) => el.classList.add("is-visible"));
     return;
@@ -178,6 +318,14 @@ document.getElementById("year").textContent = new Date().getFullYear();
 /* ---- Animated stat counters ---- */
 (function counters() {
   const nums = document.querySelectorAll(".stat__num");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finalText = (el) => Math.round(parseFloat(el.dataset.count)) + (el.dataset.suffix || "");
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    nums.forEach((el) => (el.textContent = finalText(el)));
+    return;
+  }
+
   const animate = (el) => {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || "";
@@ -191,7 +339,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     };
     requestAnimationFrame(step);
   };
-  if (!("IntersectionObserver" in window)) return;
+
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
