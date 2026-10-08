@@ -4,37 +4,48 @@ A fast, responsive, single-page resume site for **Indra Bayu**, Principal Soluti
 Architect & AI Platform Leader. Built as a zero-dependency static site (plain
 HTML/CSS/JS) so it deploys to **Cloudflare Pages** with no build step.
 
-Positioning: enterprise digital transformation for **Saudi Vision 2030**.
+Positioning: targeting enterprise transformation roles under **Saudi Vision 2030**.
+
+Design is held to the [anti-slop](https://github.com/miqdadbadjuber/anti-slop) ruleset.
+The latest audit and the decisions behind it live in `anti-slop/`.
+
+Design Read: single-page executive resume for Saudi hiring managers and recruiters,
+desktop and phone, in a restrained corporate-editorial language (navy, one gold accent,
+Sora display over Inter). Dials: ENERGY 2 / RHYTHM 2 / MOTION 1.
 
 ## Features
 
 - Responsive single-page layout: hero, summary, competencies, tech stack, experience timeline, education, contact
-- **Amber/gold accent** (`--accent: #D4A84B`) on CTA buttons, the active nav indicator, and section dividers,
-  layered over a cool brand blue (`--brand`) used for identity and gradients
-- **Big hero stats** (3rem, bold) with an amber underline and animated counters
-- **Competency cards** — 16 four-column icon cards with hover glow and lift
-- **Tech stack badges** — pill badges grouped by Cloud & Infrastructure, Data & AI, Backend & Platform,
-  Security & Compliance
-- **Career timeline** — vertical timeline with amber dots and a connecting gradient line
-- **Micro-interactions** — hover scale on cards and badges, smooth scroll, staggered fade-in on scroll,
-  scroll-spy active nav
-- **Vision 2030 positioning** — hero subtitle reads "Enterprise Digital Transformation for **Saudi Vision 2030**";
-  both primary CTAs read "Open to Saudi Arabia roles → Let's talk" and open a pre-subjected mailto
-- Light / dark theme toggle (respects system preference, persists choice)
+- **One amber/gold accent** (`--accent`), used only on the CTA fill, the active nav link,
+  the career timeline, and the section numerals. Everything else is neutral, so those
+  four read as the important moments.
+- **Hero stats** as static numbers (no count-up: a screenshot or PDF always shows the real value)
+- **Competencies**: four primary areas as cards, each with one line of evidence from the
+  timeline, followed by a plain "Also own" list of the supporting areas
+- **Tech stack** as plain labels grouped by Cloud & Infrastructure, Data & AI, Backend & Platform,
+  Security & Compliance. Only technologies run in production; self-study topics live under Education.
+- **Career timeline**: vertical line with amber dots
+- **Motion**: hover feedback on clickable things only (buttons, contact links, nav, toggle),
+  smooth scroll, scroll-spy active nav. Nothing fades in, so content is readable on first paint.
+- **One CTA label** in both places: "Email me about a Saudi role" (pre-subjected mailto)
+- **Phone nav**: at 760px and below the section links become a swipeable strip under the brand
+  (no hamburger, no JS); every nav link and the toggle are 44px tap targets
+- Light / dark theme: follows the system in pure CSS (no flash on load); the toggle saves an override
+- **Print / save as PDF**: light tokens, no nav or buttons, cards kept on one page
 - Data-driven content (edit the arrays in `script.js`)
 - Security headers via `_headers`, custom `404.html`
 - Accessible: skip link, semantic landmarks, visible focus rings, reduced-motion support
 
 ## Design tokens
 
-Two accent layers, both defined at the top of `styles.css` and overridden under
-`:root[data-theme="light"]`:
+Defined at the top of `styles.css`. Light values appear twice, under
+`@media (prefers-color-scheme: light)` and under `:root[data-theme="light"]`; keep them in sync.
 
 | Token | Dark | Light | Used for |
 |-------|------|-------|----------|
-| `--accent` | `#d4a84b` | `#c08f2a` | CTA fill, nav indicator, section dividers, timeline dots |
-| `--accent-text` | `#d4a84b` | `#8a6410` | Accent-colored text (kickers, eyebrow) at readable contrast |
-| `--brand` / `--brand-2` | `#38bdf8` / `#818cf8` | `#0284c7` / `#4f46e5` | Identity gradient on the hero title |
+| `--accent` | `#d4a84b` | `#c08f2a` | CTA fill, active nav underline, timeline line and dots |
+| `--accent-text` | `#d4a84b` | `#8a6410` | Section numerals, the brand dot |
+| `--brand` | `#38bdf8` | `#0284c7` | Hero title, primary competency icons, hero atmosphere |
 | `--text-dim` | `#778aad` | `#606f86` | Small supporting text (stat labels, section notes, metadata) |
 
 `--accent-text` is a deeper gold in the light theme so gold-on-white text still clears
@@ -42,17 +53,19 @@ WCAG AA. Fills and borders keep the brighter `--accent`.
 
 `--text-dim` is tuned so the smallest text on the page still clears 4.5:1 against every
 surface it sits on (`--bg`, `--bg-alt`, `--surface`, `--surface-2`) in both themes.
-If you darken a surface token, re-check this pair.
+The tightest pairs are 4.53:1 (dark, on `--surface-2`) and 4.54:1 (light, on `--bg-alt`).
+If you darken a surface token, re-check them.
 
 ## Icons
 
-Competency icons are [Lucide](https://lucide.dev) paths **inlined as SVG strings** in
-`script.js` (`ICON_PATHS`). No CDN, no npm — the `_headers` CSP is `script-src 'self'`,
-so a third-party icon script would be blocked anyway.
+Only the four primary competencies have icons: [Lucide](https://lucide.dev) paths
+**inlined as SVG strings** in `script.js` (`ICON_PATHS`). No CDN, no npm: the `_headers`
+CSP is `script-src 'self'`, so a third-party icon script would be blocked anyway.
+Each glyph is chosen for what the area does (layers = architecture tiers, shield =
+security, rising line = forecasting, lock = data protection); the reason sits next to it.
 
-To add an icon: copy the inner markup of the Lucide SVG into `ICON_PATHS`, then reference
-the key from `SKILLS`. The `icon()` helper supplies the `<svg>` wrapper
-(24×24 viewBox, `stroke="currentColor"`, `stroke-width="1.75"`).
+To add one, copy the inner markup of the Lucide SVG into `ICON_PATHS` and reference the
+key from `PRIMARY_SKILLS`. The supporting list deliberately has no icons.
 
 ## Project structure
 
@@ -74,7 +87,7 @@ python3 -m http.server 8080
 ```
 
 Note: `_headers` is applied by Cloudflare Pages, not by the local server, so the CSP is
-not exercised in local preview. The CSP is `script-src 'self'` — keep all JS in
+not exercised in local preview. The CSP is `script-src 'self'`: keep all JS in
 `script.js` and avoid inline `<script>` or third-party script tags.
 
 ## Verification
@@ -82,17 +95,16 @@ not exercised in local preview. The CSP is `script-src 'self'` — keep all JS i
 There is no test runner (zero-dependency, no build step). Changes are checked in headless
 Chrome over the Chrome DevTools Protocol:
 
-- **No console errors** — `console.error`/`console.warn`, uncaught exceptions, and failed
-  network requests all at zero on `index.html` and `404.html`, after scrolling the full
-  page to trigger every `IntersectionObserver`.
-- **Responsive** — 320, 375, 768, 1024, 1440, 1920. No horizontal overflow at any width;
-  the competency grid steps 4 -> 3 -> 2 -> 1 column.
-- **Both themes** — toggle flips `data-theme`, persists to `localStorage`, and swaps the
+- **No console errors**: `console.error`/`console.warn`, uncaught exceptions, and failed
+  network requests all at zero on `index.html` and `404.html`, in both color schemes.
+- **Responsive**: 320, 375, 768, 1024, 1440, 1920. No horizontal overflow at any width;
+  the primary competencies step 2 -> 1 column; every nav link is 44px tall.
+- **Both themes**: toggle flips `data-theme`, persists to `localStorage`, and swaps the
   sun/moon icons.
-- **Reduced motion** — under `prefers-reduced-motion: reduce`, reveals render at full
-  opacity with no transition, counters jump straight to their final values, and smooth
-  scroll falls back to `auto`.
-- **Contrast** — every foreground/background token pair is checked against WCAG AA (4.5:1).
+- **Reduced motion**: under `prefers-reduced-motion: reduce`, transitions and hover lifts
+  are off and smooth scroll falls back to `auto`.
+- **Print**: save as PDF and check that every section renders on the light palette.
+- **Contrast**: every foreground/background token pair is checked against WCAG AA (4.5:1).
 
 ## Deploy to Cloudflare Pages
 
@@ -123,4 +135,4 @@ wrangler pages deploy . --project-name=indra-bayu-resume
 - **Asset caching:** `index.html` links `styles.css` and `script.js` with a `?v=N`
   query string, and `404.html` links `styles.css` the same way. Bump `N` in **all three**
   places when shipping style or script changes so the Cloudflare edge cache serves fresh
-  assets. Currently `v=3`.
+  assets. Currently `v=4`.

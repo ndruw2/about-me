@@ -3,40 +3,20 @@
    ============================================================ */
 
 /* ---- Lucide icons (inlined: the CSP blocks third-party scripts,
-        and the site stays zero-dependency / no build step) ---- */
+        and the site stays zero-dependency / no build step).
+        Only the four primary competencies carry an icon; each glyph was
+        picked for what the area protects or produces, not for looks. ---- */
 const ICON_PATHS = {
-  "layout-grid":
-    '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+  // stacked layers: architecture across POS, commerce, data, and AI tiers
+  layers:
+    '<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
   "shield-check":
     '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
-  cpu:
-    '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/>',
-  lock:
-    '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
-  "shopping-cart":
-    '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
-  database:
-    '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
-  cloud:
-    '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-  smartphone:
-    '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
-  "git-branch":
-    '<line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
-  infinity:
-    '<path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/>',
-  "share-2":
-    '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>',
-  "wifi-off":
-    '<path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/>',
-  radio:
-    '<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>',
-  users:
-    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  // rising line: the AI platform's first production use is forecasting
   "trending-up":
     '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
-  globe:
-    '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+  lock:
+    '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
 };
 
 const icon = (name) =>
@@ -44,24 +24,43 @@ const icon = (name) =>
     ICON_PATHS[name] || ""
   }</svg>`;
 
-/* ---- Core competencies ---- */
-const SKILLS = [
-  { icon: "layout-grid", label: "Enterprise Solutions Architecture" },
-  { icon: "shield-check", label: "Production Cybersecurity Architecture" },
-  { icon: "cpu", label: "AI / ML Platform Integration" },
-  { icon: "lock", label: "UU PDP / PDPL Data Protection Compliance" },
-  { icon: "shopping-cart", label: "Omnichannel & E-Commerce Platforms" },
-  { icon: "database", label: "Data Warehouse & AI/ML Pipelines" },
-  { icon: "cloud", label: "Cloud Architecture (AWS, Azure, GCP)" },
-  { icon: "smartphone", label: "Mobile (iOS / Android) Platforms" },
-  { icon: "git-branch", label: "Microservices & Event-Driven Design" },
-  { icon: "infinity", label: "DevOps, CI/CD & FinOps" },
-  { icon: "share-2", label: "API Gateway & System Integration" },
-  { icon: "wifi-off", label: "Offline-First POS at National Scale" },
-  { icon: "radio", label: "IoT / MQTT & Real-Time Streaming" },
-  { icon: "users", label: "Vendor & Cross-Functional Leadership" },
-  { icon: "trending-up", label: "P&L and Country-Level Operations" },
-  { icon: "globe", label: "Vision 2030 Digital Transformation" },
+/* ---- Core competencies: the four areas the role is hired for, each with
+        one line of evidence from the timeline, then the supporting work. ---- */
+const PRIMARY_SKILLS = [
+  {
+    icon: "layers",
+    title: "Enterprise solutions architecture",
+    proof: "Architecture owner for POS, e-commerce, mobile, CRM, contact center, and the data warehouse at PZZA.",
+  },
+  {
+    icon: "shield-check",
+    title: "Production cybersecurity architecture",
+    proof: "WAF, DDoS mitigation, SIEM, pentest cycle, IAM, and IR runbooks across 24M+ transactions a year.",
+  },
+  {
+    icon: "trending-up",
+    title: "AI / ML platform",
+    proof: "Launched PZZA's first production AI platform in Q1 2026: an operations chatbot plus sales and inventory forecasting.",
+  },
+  {
+    icon: "lock",
+    title: "Data protection compliance",
+    proof: "Brought every consumer-facing system into UU PDP compliance, a framework that maps onto Saudi PDPL and NCA ECC.",
+  },
+];
+
+const SUPPORTING_SKILLS = [
+  "Omnichannel & e-commerce platforms",
+  "Data warehouse & ML pipelines",
+  "Cloud architecture (AWS, Azure, GCP)",
+  "iOS & Android platforms",
+  "Microservices & event-driven design",
+  "DevOps, CI/CD & FinOps",
+  "API gateway & system integration",
+  "Offline-first POS at national scale",
+  "IoT / MQTT real-time streaming",
+  "Vendor & cross-functional leadership",
+  "P&L and country-level operations",
 ];
 
 /* ---- Technology stack ---- */
@@ -91,7 +90,7 @@ const TECH_STACK = [
     group: "Security & Compliance",
     items: [
       "WAF & DDoS", "SIEM", "Zero Trust / SASE", "IAM", "Secrets Management",
-      "Pentest Cycle", "UU PDP", "Saudi PDPL", "NCA ECC",
+      "Pentest Cycle", "UU PDP",
     ],
   },
 ];
@@ -174,17 +173,23 @@ const EXPERIENCE = [
   },
 ];
 
-/* ---- Render competency cards ---- */
+/* ---- Render competencies ---- */
 (function renderSkills() {
   const grid = document.getElementById("skillsGrid");
-  if (!grid) return;
-  grid.innerHTML = SKILLS.map(
-    (s) => `
-    <div class="skill reveal">
+  const more = document.getElementById("skillsMore");
+  if (grid) {
+    grid.innerHTML = PRIMARY_SKILLS.map(
+      (s) => `
+    <article class="skill">
       <span class="skill__icon">${icon(s.icon)}</span>
-      <span class="skill__text">${s.label}</span>
-    </div>`
-  ).join("");
+      <h3 class="skill__title">${s.title}</h3>
+      <p class="skill__proof">${s.proof}</p>
+    </article>`
+    ).join("");
+  }
+  if (more) {
+    more.innerHTML = SUPPORTING_SKILLS.map((t) => `<li>${t}</li>`).join("");
+  }
 })();
 
 /* ---- Render tech stack badges ---- */
@@ -193,7 +198,7 @@ const EXPERIENCE = [
   if (!wrap) return;
   wrap.innerHTML = TECH_STACK.map(
     (g) => `
-    <div class="stack__group reveal">
+    <div class="stack__group">
       <h3 class="stack__label">${g.group}</h3>
       <div class="stack__items">
         ${g.items.map((t) => `<span class="badge">${t}</span>`).join("")}
@@ -208,7 +213,7 @@ const EXPERIENCE = [
   if (!wrap) return;
   wrap.innerHTML = EXPERIENCE.map(
     (j) => `
-    <article class="job reveal">
+    <article class="job">
       <p class="job__period">${j.period}</p>
       <h3 class="job__role">${j.role}</h3>
       <p class="job__org">${j.org}</p>
@@ -223,18 +228,28 @@ const EXPERIENCE = [
 /* ---- Year in footer ---- */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* ---- Theme toggle (persisted) ---- */
+/* ---- Theme toggle (persisted) ----
+   With no saved choice the CSS follows prefers-color-scheme, so nothing is
+   set here on load and there is no flash. localStorage can throw (Safari
+   private mode, blocked storage); the toggle still works for the visit. */
 (function theme() {
   const root = document.documentElement;
   const btn = document.getElementById("themeToggle");
-  const stored = localStorage.getItem("theme");
-  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-  const initial = stored || (prefersLight ? "light" : "dark");
-  root.setAttribute("data-theme", initial);
+  const KEY = "theme";
+  const read = () => {
+    try { return localStorage.getItem(KEY); } catch { return null; }
+  };
+  const save = (value) => {
+    try { localStorage.setItem(KEY, value); } catch { /* not persisted this visit */ }
+  };
+  const stored = read();
+  if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
   btn?.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    const systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const current = root.getAttribute("data-theme") || (systemLight ? "light" : "dark");
+    const next = current === "light" ? "dark" : "light";
     root.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    save(next);
   });
 })();
 
@@ -254,11 +269,14 @@ document.getElementById("year").textContent = new Date().getFullYear();
     .filter((e) => e.section);
   if (!entries.length) return;
 
-  const OFFSET = 120; // clears the sticky nav
+  const nav = document.getElementById("nav");
+  const SPY_MARGIN = 24; // a section counts as current once its top is just under the nav
   let queued = false;
 
   const update = () => {
     queued = false;
+    // The nav is taller on phones (links wrap to a second row), so measure it.
+    const OFFSET = (nav?.offsetHeight ?? 88) + SPY_MARGIN;
     const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
     // Last section whose top has crossed the offset line; bottom of page always wins.
     let active = atBottom ? entries[entries.length - 1] : null;
@@ -279,77 +297,4 @@ document.getElementById("year").textContent = new Date().getFullYear();
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
-})();
-
-/* ---- Staggered reveal on scroll ---- */
-(function reveal() {
-  const items = Array.from(document.querySelectorAll(".reveal"));
-  if (!items.length) return;
-
-  // Stagger siblings within the same container, capped so nothing lags badly.
-  const seen = new Map();
-  const STEP_MS = 70;
-  const MAX_STEPS = 7;
-  items.forEach((el) => {
-    const parent = el.parentElement;
-    const i = seen.get(parent) ?? 0;
-    seen.set(parent, i + 1);
-    el.style.setProperty("--reveal-delay", `${Math.min(i, MAX_STEPS) * STEP_MS}ms`);
-  });
-
-  if (!("IntersectionObserver" in window)) {
-    items.forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-  items.forEach((el) => io.observe(el));
-})();
-
-/* ---- Animated stat counters ---- */
-(function counters() {
-  const nums = document.querySelectorAll(".stat__num");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finalText = (el) => Math.round(parseFloat(el.dataset.count)) + (el.dataset.suffix || "");
-
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    nums.forEach((el) => (el.textContent = finalText(el)));
-    return;
-  }
-
-  const animate = (el) => {
-    const target = parseFloat(el.dataset.count);
-    const suffix = el.dataset.suffix || "";
-    const dur = 1400;
-    const start = performance.now();
-    const step = (now) => {
-      const p = Math.min((now - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          animate(e.target);
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.6 }
-  );
-  nums.forEach((n) => io.observe(n));
 })();
