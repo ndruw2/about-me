@@ -1,7 +1,7 @@
 # Indra Bayu | Resume Site
 
-A fast, responsive, single-page resume site for **Indra Bayu**, Principal Solutions
-Architect & AI Platform Leader. Built as a zero-dependency static site (plain
+A fast, responsive, single-page resume site for **Indra Bayu**, Senior Manager,
+Solutions Architect. Built as a zero-dependency static site (plain
 HTML/CSS/JS) so it deploys to **Cloudflare Pages** with no build step.
 
 Positioning: targeting enterprise transformation roles under **Saudi Vision 2030**.

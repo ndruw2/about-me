@@ -108,7 +108,7 @@ const EXPERIENCE = [
       "Designed a two-site VoIP contact center (Jakarta and Solo Raya) with active-passive database replication so support holds steady during a site failure: agents keep the same call context, no dropped tickets, no manual reconciliation.",
       "Launched the AI platform in Q1 2026: internal AI chatbot for operations team and ML models for sales and inventory forecasting on a unified data platform ingesting via real-time streaming (MQTT order events, driver GPS telemetry) and batch pipelines. First AI deployment to production at PZZA.",
       "Built real-time driver tracking using MQTT-based IoT event streaming from the driver app into the customer order tracker, giving customers live GPS visibility of their delivery.",
-      "Own the production security architecture: edge WAF and DDoS mitigation, SIEM monitoring, a regular pentest cycle, IAM hardening, secrets management, and rehearsed IR runbooks. The platform held up against real DDoS and phishing attempts without material breach across 24M+ annual transactions.",
+      "Own the production security architecture: edge WAF and DDoS mitigation, SIEM monitoring, a regular pentest cycle, IAM hardening, secrets management, and rehearsed IR runbooks. The platform held up against real DDoS and phishing attempts with no breach across 24M+ annual transactions.",
       "Leading the POC and vendor evaluation for SASE across the enterprise network, assessing Cloudflare One and FortiSASE against zero-trust access, cloud-delivered security, and SD-WAN requirements.",
       "Brought the platform into UU PDP compliance across every consumer-facing system (data classification, consent flows, retention, breach response). The same framework lifts cleanly onto Saudi PDPL and NCA ECC.",
       "Cut cloud infrastructure spend by 20% through architecture changes, right-sizing, and reserved capacity, with no SLA degradation through peak ordering periods.",
@@ -147,7 +147,7 @@ const EXPERIENCE = [
     context:
       "Indonesia's #1 lifestyle retailer, IDX-listed. 150+ international brands, 2,000+ retail stores.",
     points: [
-      "Designed and built the e-commerce platform that became MAPClub.com, MAP's loyalty and commerce platform now serving 8M+ members, covering business analysis, system analysis, architecture, and delivery.",
+      "Designed and built the e-commerce platform that became MAPClub.com, MAP's loyalty and commerce platform, covering business analysis, system analysis, architecture, and delivery.",
       "Worked on omnichannel integration across MAP's multi-brand estate, an early look at the patterns I now use daily at PZZA.",
     ],
   },
