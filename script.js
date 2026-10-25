@@ -1,16 +1,19 @@
 /* ============================================================
    Indra Bayu - Resume site interactions
    The page content lives in index.html so it reads with scripting off;
-   this file only adds the year, the theme toggle, and the nav states.
+   this file only adds the year, the theme toggle, the nav states, and print.
    ============================================================ */
+
+/* Marks that scripting runs, so script-only states (the top-bar name) can hide safely. */
+document.documentElement.classList.add("js");
 
 /* ---- Year in footer ---- */
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ---- Theme toggle (persisted) ----
-   Night (Lumen) is the default and needs no attribute; the toggle sets
-   data-theme="light" for the day drop and saves it. localStorage can throw
-   (Safari private mode, blocked storage); the toggle still works for the visit. */
+   With no saved choice the CSS follows prefers-color-scheme, so nothing is
+   set here on load and there is no flash. localStorage can throw (Safari
+   private mode, blocked storage); the toggle still works for the visit. */
 (function theme() {
   const root = document.documentElement;
   const btn = document.getElementById("themeToggle");
@@ -22,12 +25,12 @@ document.getElementById("year").textContent = new Date().getFullYear();
     try { localStorage.setItem(KEY, value); } catch { /* not persisted this visit */ }
   };
   const stored = read();
-  if (stored === "light") root.setAttribute("data-theme", "light");
+  if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
   btn?.addEventListener("click", () => {
-    const current = root.getAttribute("data-theme") || "dark";
-    const next = current === "light" ? "dark" : "light";
-    if (next === "light") root.setAttribute("data-theme", "light");
-    else root.removeAttribute("data-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const current = root.getAttribute("data-theme") || (systemDark ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
     save(next);
   });
 })();
@@ -35,7 +38,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 /* ---- Sticky nav shadow ---- */
 (function navShadow() {
   const nav = document.getElementById("nav");
-  const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
+  const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 160);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
@@ -76,4 +79,22 @@ document.getElementById("year").textContent = new Date().getFullYear();
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
+})();
+
+/* ---- Print / save as PDF ----
+   The button ships hidden so it never shows without scripting. Collapsed
+   details are opened for print so the PDF carries every point. */
+(function print() {
+  const btn = document.querySelector("[data-print]");
+  if (btn) {
+    btn.hidden = false;
+    btn.addEventListener("click", () => window.print());
+  }
+  const opened = [];
+  window.addEventListener("beforeprint", () => {
+    document.querySelectorAll("details:not([open])").forEach((d) => { d.open = true; opened.push(d); });
+  });
+  window.addEventListener("afterprint", () => {
+    opened.splice(0).forEach((d) => { d.open = false; });
+  });
 })();
