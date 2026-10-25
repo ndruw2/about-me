@@ -123,7 +123,7 @@ wrangler pages deploy . --project-name=indra-bayu-resume
 
 - **Everything** (hero, summary, competencies, stack, experience, education, contact):
   edit directly in `index.html`.
-- **Colors & type:** the tokens in `tokens.css` (light, dark, and print blocks).
+- **Colors & type:** the tokens in `tokens.css` (night, day, and print blocks).
 - **Asset caching:** `index.html` links `styles.css` and `script.js` with a `?v=N`
   query string, `404.html` links `styles.css` the same way, and `styles.css` imports
   `tokens.css` and `base.css` with the same `?v=N`. Bump `N` in **all five** places when
