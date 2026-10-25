@@ -8,9 +8,9 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ---- Theme toggle (persisted) ----
-   With no saved choice the CSS follows prefers-color-scheme, so nothing is
-   set here on load and there is no flash. localStorage can throw (Safari
-   private mode, blocked storage); the toggle still works for the visit. */
+   Night (Lumen) is the default and needs no attribute; the toggle sets
+   data-theme="light" for the day drop and saves it. localStorage can throw
+   (Safari private mode, blocked storage); the toggle still works for the visit. */
 (function theme() {
   const root = document.documentElement;
   const btn = document.getElementById("themeToggle");
@@ -22,12 +22,12 @@ document.getElementById("year").textContent = new Date().getFullYear();
     try { localStorage.setItem(KEY, value); } catch { /* not persisted this visit */ }
   };
   const stored = read();
-  if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
+  if (stored === "light") root.setAttribute("data-theme", "light");
   btn?.addEventListener("click", () => {
-    const systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    const current = root.getAttribute("data-theme") || (systemLight ? "light" : "dark");
+    const current = root.getAttribute("data-theme") || "dark";
     const next = current === "light" ? "dark" : "light";
-    root.setAttribute("data-theme", next);
+    if (next === "light") root.setAttribute("data-theme", "light");
+    else root.removeAttribute("data-theme");
     save(next);
   });
 })();

@@ -6,54 +6,55 @@ HTML/CSS/JS) so it deploys to **Cloudflare Pages** with no build step.
 
 Positioning: targeting enterprise transformation roles under **Saudi Vision 2030**.
 
-Design: rebuilt on 25 Oct 2026 with [Hallmark](https://github.com/nutlope/hallmark)
+Design: rebuilt on 25 Oct 2026 (Lumen pass) with [Hallmark](https://github.com/nutlope/hallmark)
 (`/hallmark redesign`, full depth). The decisions are stamped in the first comment lines
 of `styles.css`. The earlier [anti-slop](https://github.com/miqdadbadjuber/anti-slop)
 audit is kept in `anti-slop/` for history.
 
 Design read: single-page executive resume for Saudi hiring managers and recruiters,
-desktop and phone. Theme **Almanac**: the career set as a printed reference book, with
-cool slate stock, blue-black ink, Hanken Grotesk heads over Newsreader prose, figures in
-IBM Plex Mono, two rule weights, square corners, and one deep magenta kept under 5% of a screen.
-Shape **Conversational FAQ**: every section head is a recruiter's question
-("What do you run today?"), answered in first person.
+desktop and phone. Theme **Lumen** (chosen 25 Oct 2026 after the first pass, Almanac, was
+rejected as too plain): a violet-black night ground, near-white ink, lowercase Instrument
+Serif heads over Geist, figures and readouts in Geist Mono, hairline wells, a faint
+blueprint grid, one brass signal and one rose verb ("hold") in the hero.
+Shape **Map / Diagram**: the hero draws the two platform paths I own (an order through the
+edge, operational events into the AI platform); the sections below prove each node.
 
 ## Features
 
-- **Hero**: name, one line, the mailto action, and the four platform figures set as a
-  printed table (the "record" sheet). Static numbers, no count-up.
-- **Competencies**: the four primary areas as a numbered list of rows, each with one line
-  of evidence, then the "Also own" list in three columns. No icons.
-- **Tech stack**: one printed table, area per row, only technologies run in production.
-- **Experience**: one row per role, with the meta (dates, role, org, context) on the left
-  and the points on the right. The current role's meta stays in view while its points scroll.
+- **Hero**: the path diagram as the field, then the name, the head and the mailto action.
+  The brass connector draws in once on load; nothing loops.
+- **About**: the platform as a console readout (6M, 600+, ~2M, 300M+, 15, −20%, and what
+  held in production) beside the summary prose.
+- **Competencies**: a bento of the four areas with their proof (24M+, Q1 2026, the
+  UU PDP → PDPL / NCA ECC map), then "also own" as tags.
+- **Tech stack**: rate-card rows, area per row, technologies as mono tags.
+- **Experience**: one hairline row per role (dates, meta, points). The current role's
+  meta stays in view while its points scroll.
+- **Contact**: a message well (to, subject, the mailto) beside email, phone, LinkedIn, location.
 - **All content is static HTML**, so the page reads fully with scripting off.
   `script.js` only sets the footer year, the theme toggle, and the nav states.
-- **One CTA label** in both places: "Email me about a Saudi role" (pre-subjected mailto)
-- **Phone nav**: under 60rem the section links become a swipeable strip under the name
-  (no hamburger); the toggle is a 44px tap target
-- Light / dark theme: light by default, dark follows the system in pure CSS; the toggle
-  saves an override in `data-theme`
+- **One CTA label**: "Email me about a Saudi role" (pre-subjected mailto), in the hero and the close
+- **Phone nav**: under 60rem the pill wraps and the section links become a swipeable strip
+- Theme: night by default; the toggle switches to the `day` drop (`data-theme="light"`) and saves it
 - **Print / save as PDF**: near-white stock, no nav or buttons, nothing sticky, rows kept whole
-- **Motion**: state changes only (hover, press, underline). Nothing fades in.
 - Security headers via `_headers`, custom `404.html`
-- Accessible: skip link, semantic landmarks, instant focus rings, reduced-motion support
+- Accessible: skip link, semantic landmarks, focus rings, reduced-motion support
 
 ## Design tokens
 
-- `tokens.css`: Almanac colour and type tokens plus the shared spacing and type scale,
-  then the dark block (declared twice: `:root[data-theme="dark"]` and
-  `@media (prefers-color-scheme: dark)`; keep them in sync), then the print block.
+- `tokens.css`: Lumen night tokens and the shared spacing and type scale, then the `day`
+  drop under `:root[data-theme="light"]`, then the print block.
 - `base.css`: base rules from the Hallmark scaffold (overflow clip, focus ring,
   heading measures, reduced motion).
 - `styles.css`: the page. No literal colours or font families past the token files.
 
-| Token | Light | Used for |
+| Token | Night | Used for |
 |-------|-------|----------|
-| `--color-paper` | slate `oklch(84% 0.012 245)` | page ground |
-| `--color-sheet` | pale `oklch(93.5% 0.008 245)` | the printed tables (hero record, stack) |
-| `--color-accent` | magenta `oklch(45% 0.18 350)` | primary button, link underlines, the one marked row |
-| `--color-band` | ink | footer mast (re-derived darker in dark mode) |
+| `--color-paper` | violet-black `oklch(12.5% 0.027 290)` | page ground |
+| `--color-paper-2` | `oklch(16% 0.03 290)` | wells, console, tiles |
+| `--color-accent` | brass `oklch(80% 0.15 62)` (day: indigo) | primary button, the order path, focus ring |
+| `--color-accent-2` | rose `oklch(72% 0.15 12)` | the one verb in the hero head only |
+| `--color-live` | green `oklch(80% 0.13 155)` | live states and "held" results |
 
 ## Project structure
 
@@ -87,15 +88,15 @@ Hallmark's linter in headless Chrome, against a local server:
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
-node <hallmark>/skills/hallmark/scripts/sloplint.mjs index.html --genre editorial --render --url http://127.0.0.1:4173/
+node <hallmark>/skills/hallmark/scripts/sloplint.mjs index.html --genre atmospheric --render --url http://127.0.0.1:4173/
 ```
 
 It needs `puppeteer-core` (`HALLMARK_PUPPETEER=<dir with node_modules>`) and Chrome.
-`.hallmark/` holds its screenshots and records and is git-ignored. Result at the
-redesign: 0 FAIL, 0 REFLEX (before: 15 FAIL, 10 REFLEX), 12/12 links kept. The
-words-per-screen gate reports as a note because a redesign keeps the owner's words.
+`.hallmark/` holds its screenshots and records and is git-ignored. Result on the
+Lumen pass: 0 FAIL, 0 REFLEX, 0 WARN. Words-per-screen reports as a note because a
+redesign keeps the owner's words.
 
-Also check by hand: both themes (the toggle flips `data-theme` and persists), 320 to 1920
+Also check by hand: night and day (the toggle flips `data-theme` and persists), 320 to 1920
 with no horizontal scroll, reduced motion, and print to PDF.
 
 ## Deploy to Cloudflare Pages
@@ -127,4 +128,4 @@ wrangler pages deploy . --project-name=indra-bayu-resume
   query string, `404.html` links `styles.css` the same way, and `styles.css` imports
   `tokens.css` and `base.css` with the same `?v=N`. Bump `N` in **all five** places when
   shipping style or script changes so the Cloudflare edge cache serves fresh assets.
-  Currently `v=5`.
+  Currently `v=6`.
