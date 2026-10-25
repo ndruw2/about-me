@@ -6,8 +6,8 @@
    intro blocks (58) and "UU PDP" in capitals (67) are kept on purpose: this is a CV, the
    labels are the read.cv structure the owner asked for, and UU PDP is a law's name. Light by default, dark via the system
    or the toggle, print-ready. Tokens in tokens.css, base rules in base.css. */
-@import url("./tokens.css?v=7");
-@import url("./base.css?v=7");
+@import url("./tokens.css?v=8");
+@import url("./base.css?v=8");
 
 .skip-link { position: absolute; left: var(--space-md); top: -100px; z-index: 50; padding: var(--space-xs) var(--space-md); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-paper); text-decoration: none; }
 .skip-link:focus-visible { top: var(--space-md); }
@@ -136,6 +136,30 @@
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--color-ink); }
 
+/* summary / detailed views
+   Without scripting the root has no data-view: every detailed block shows and the
+   summary-only blocks stay hidden, so nothing is lost. script.js sets data-view. */
+[data-only="summary"] { display: none !important; }
+:root[data-view="summary"] [data-only="summary"] { display: revert !important; }
+:root[data-view="summary"] [data-only="detailed"] { display: none !important; }
+:root[data-view="summary"] .roles[data-only="summary"] { display: grid !important; }
+:root[data-view="summary"] .link-btn[data-only="summary"] { display: inline-flex !important; }
+.view { display: inline-flex; gap: var(--space-2xs); margin-top: var(--space-xl); padding: var(--space-2xs); border: var(--rule) solid var(--color-rule); border-radius: var(--radius-pill); background: var(--color-surface); }
+.view__btn { min-height: 36px; padding: 0 var(--space-lg); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--color-muted); font-size: var(--text-sm); font-weight: 500; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out); }
+.view__btn:hover { color: var(--color-ink); }
+.view__btn[aria-pressed="true"] { background: var(--color-paper); color: var(--color-ink); box-shadow: var(--shadow-soft), inset 0 0 0 var(--rule) var(--color-rule); }
+.roles { display: grid; gap: 0; list-style: none; }
+.role { padding-block: var(--space-md); border-top: var(--rule) dashed var(--color-rule); }
+.role:first-child { padding-top: 0; border-top: 0; }
+.role__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px var(--space-md); }
+.role__title { font-size: var(--text-md); font-weight: 500; color: var(--color-ink); }
+.role__org { color: var(--color-ink-2); font-size: var(--text-sm); }
+.role__line { margin-top: var(--space-2xs); font-size: var(--text-sm); color: var(--color-muted); }
+.link-btn { display: inline-flex; align-items: center; gap: var(--space-xs); margin-top: var(--space-md); padding: var(--space-2xs) 0; border: 0; background: none; color: var(--color-accent); font-size: var(--text-sm); font-weight: 500; cursor: pointer; }
+.link-btn::after { content: "→"; transition: transform var(--dur-short) var(--ease-out); }
+.link-btn:hover::after { transform: translateX(3px); }
+.link-btn:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
 /* 404 */
 .nf { display: grid; align-content: center; justify-items: start; gap: var(--space-md); max-width: calc(var(--measure) + 2 * var(--gutter)); min-height: 100svh; margin-inline: auto; padding: var(--space-3xl) var(--gutter); }
 .nf h1 { font-size: var(--text-name); font-weight: 600; letter-spacing: -0.025em; }
@@ -155,7 +179,7 @@
 
 @media print {
   @page { margin: 14mm; }
-  .top, .skip-link, .intro__actions, .contact__cta, .foot a { display: none !important; }
+  .top, .skip-link, .intro__actions, .contact__cta, .foot a, .view, .link-btn { display: none !important; }
   .cv { padding-top: 0; }
   .intro > *, .dot::after { animation: none; }
   .row__label { position: static; }

@@ -18,6 +18,12 @@ green accent used only for the status dot, link hovers, "show more" and focus.
 
 ## Features
 
+- **Summary / Detailed views**: a two-way switch under the figures. Summary (the default)
+  shows the intro, one line per role, the four competencies, the degree and contact;
+  Detailed adds the full summary prose, every role point, "Also own", the stack,
+  continuous learning and languages. `?view=detailed` opens the full CV and is kept in the
+  URL so either view can be shared; Save as PDF prints the view on screen. Blocks carry
+  `data-only="summary"` or `data-only="detailed"`; with scripting off the detailed CV shows.
 - **Intro**: initials avatar, name, title, a "Jakarta, open to relocate to Saudi Arabia"
   status pill, the one-paragraph pitch, then actions (mailto, LinkedIn, Save as PDF) and the
   four figures (14, 6M, 600+, 300M+). The intro rises in once on load; nothing loops.
@@ -28,7 +34,7 @@ green accent used only for the status dot, link hovers, "show more" and focus.
 - **Expertise**: the four areas as cards with their proof, then "Also own" as tags.
 - **Stack**: four groups of tags. **Education**, languages and **contact** as label/value pairs.
 - **All content is static HTML**, so the page reads fully with scripting off.
-  `script.js` only sets the footer year, the theme toggle, the nav states, and print.
+  `script.js` only sets the footer year, the theme toggle, the views, the nav states, and print.
 - **Top bar**: sticky, blurred, with section links (swipeable on phones), scroll spy,
   and the name fading in once you scroll past the intro.
 - Light by default, dark follows the system in pure CSS; the toggle saves an override in `data-theme`
@@ -58,7 +64,7 @@ index.html      Main page (all content, static)
 styles.css      Page styling; the design note is its first comment
 tokens.css      Colour, type, and spacing tokens (light, dark, print)
 base.css        Base rules from the Hallmark scaffold
-script.js       Footer year, theme toggle, sticky-nav state, scroll spy, print
+script.js       Footer year, theme toggle, summary/detailed views, sticky-nav state, scroll spy, print
 _headers        Cloudflare Pages security & cache headers
 404.html        Custom not-found page
 ```
@@ -123,4 +129,4 @@ wrangler pages deploy . --project-name=indra-bayu-resume
   query string, `404.html` links `styles.css` the same way, and `styles.css` imports
   `tokens.css` and `base.css` with the same `?v=N`. Bump `N` in **all five** places when
   shipping style or script changes so the Cloudflare edge cache serves fresh assets.
-  Currently `v=7`.
+  Currently `v=8`.

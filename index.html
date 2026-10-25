@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='%231f6f55'/%3E%3Ctext x='50' y='64' font-size='40' font-family='Helvetica,Arial,sans-serif' font-weight='600' fill='%23ffffff' text-anchor='middle'%3EIB%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
@@ -26,10 +26,10 @@
     <div class="top__inner">
       <a class="top__brand" href="#top" aria-label="Indra Bayu, back to top">Indra Bayu</a>
       <nav class="top__links nav__links" aria-label="Primary">
-        <a href="#about">About</a>
+        <a href="#about" data-only="detailed">About</a>
         <a href="#experience">Experience</a>
         <a href="#expertise">Expertise</a>
-        <a href="#stack">Stack</a>
+        <a href="#stack" data-only="detailed">Stack</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -67,10 +67,14 @@
         <div><dt>Outlets on my POS</dt><dd>600+</dd></div>
         <div><dt>API requests / month</dt><dd>300M+</dd></div>
       </dl>
+      <div class="view" role="group" aria-label="Choose how much detail to show" data-view-switch hidden>
+        <button type="button" class="view__btn" data-set-view="summary" aria-pressed="true">Summary</button>
+        <button type="button" class="view__btn" data-set-view="detailed" aria-pressed="false">Detailed</button>
+      </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="row" id="about" aria-labelledby="about-title">
+    <!-- ABOUT (detailed view) -->
+    <section class="row" id="about" aria-labelledby="about-title" data-only="detailed">
       <h2 class="row__label" id="about-title">About</h2>
       <div class="row__body prose">
         <p>
@@ -100,7 +104,44 @@
     <!-- EXPERIENCE -->
     <section class="row" id="experience" aria-labelledby="experience-title">
       <h2 class="row__label" id="experience-title">Experience</h2>
-      <div class="row__body" id="timeline">
+      <div class="row__body">
+        <!-- summary view: one line per role -->
+        <ol class="roles" data-only="summary">
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">Senior Manager, Solutions Architect</h3><p class="job__period">2022 to present</p></div>
+            <p class="role__org">Pizza Hut Indonesia (IDX: PZZA)</p>
+            <p class="role__line">Lead architecture for a 6M-customer platform: POS in 600+ outlets, the AI platform live since Q1 2026, and no breach across 24M+ transactions a year.</p>
+          </li>
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">Country Director &amp; Solutions Architect</h3><p class="job__period">2018 to 2022</p></div>
+            <p class="role__org">DIQIT Business Solutions (Singapore HQ)</p>
+            <p class="role__line">Built DIQIT Indonesia from zero, owning the country P&amp;L, and delivered cloud POS within a 1,000+ store APAC footprint; acquired by PZZA in 2022.</p>
+          </li>
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">Scrum Master &amp; Product Owner</h3><p class="job__period">2016 to 2018</p></div>
+            <p class="role__org">We Are Definite and Datanest</p>
+            <p class="role__line">Shipped digital.dompetdhuafa.org and ran concurrent client product builds, with hands-on data and AI work at Datanest.</p>
+          </li>
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">E-Commerce Platform Architect &amp; Business Analyst</h3><p class="job__period">2015 to 2016</p></div>
+            <p class="role__org">PT Mitra Adiperkasa Tbk (MAP, IDX: MAPI)</p>
+            <p class="role__line">Designed and built the e-commerce platform that became MAPClub.com.</p>
+          </li>
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">IT Application Specialist</h3><p class="job__period">2013 to 2015</p></div>
+            <p class="role__org">KOMPAS TV (Kompas Gramedia Group)</p>
+            <p class="role__line">Supported enterprise broadcast and corporate applications for a national media group.</p>
+          </li>
+          <li class="role">
+            <div class="role__head"><h3 class="role__title">IT Web Developer (earlier roles)</h3><p class="job__period">2011 to 2012</p></div>
+            <p class="role__org">Priamanaya Djan International and KSEI</p>
+            <p class="role__line">Project management and a mini-ERP build, then an intranet web application at Indonesia’s Central Securities Depository.</p>
+          </li>
+        </ol>
+        <button type="button" class="link-btn" data-only="summary" data-set-view="detailed" data-scroll="experience" hidden>See every point in the detailed view</button>
+
+        <!-- detailed view: every role in full -->
+        <div id="timeline" data-only="detailed">
         <article class="job">
           <header class="job__head">
             <h3 class="job__role">Senior Manager, Solutions Architect</h3>
@@ -191,6 +232,7 @@
             <li>Delivered project management and a mini-ERP build at Priamanaya, and built an intranet web application during the KSEI internship.</li>
           </ul>
         </article>
+        </div>
       </div>
     </section>
 
@@ -216,6 +258,7 @@
             <p class="skill__proof">Brought every consumer-facing system into UU PDP compliance, a framework that maps onto Saudi PDPL and NCA ECC.</p>
           </li>
         </ul>
+        <div data-only="detailed">
         <h3 class="sub">Also own</h3>
         <ul class="tags" id="skillsMore">
           <li>Omnichannel &amp; e-commerce platforms</li>
@@ -230,11 +273,12 @@
           <li>Vendor &amp; cross-functional leadership</li>
           <li>P&amp;L and country-level operations</li>
         </ul>
+        </div>
       </div>
     </section>
 
-    <!-- STACK -->
-    <section class="row" id="stack" aria-labelledby="stack-title">
+    <!-- STACK (detailed view) -->
+    <section class="row" id="stack" aria-labelledby="stack-title" data-only="detailed">
       <h2 class="row__label" id="stack-title">Stack</h2>
       <div class="row__body">
         <dl class="stack" id="techStack">
@@ -269,6 +313,7 @@
           </header>
           <p class="job__org">Universitas Bina Nusantara (BINUS), Jakarta</p>
         </article>
+        <div data-only="detailed">
         <h3 class="sub">Continuous learning</h3>
         <ul class="plain">
           <li>AWS solutions architecture (self-directed)</li>
@@ -282,6 +327,7 @@
           <div><dt>English</dt><dd>Professional working</dd></div>
           <div><dt>Arabic</dt><dd>Beginner (studying)</dd></div>
         </dl>
+        </div>
       </div>
     </section>
 
@@ -307,6 +353,6 @@
     <a href="#top">Back to top</a>
   </footer>
 
-  <script src="/script.js?v=7" defer></script>
+  <script src="/script.js?v=8" defer></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 /* ============================================================
    Indra Bayu - Resume site interactions
    The page content lives in index.html so it reads with scripting off;
-   this file only adds the year, the theme toggle, the nav states, and print.
+   this file only adds the year, the theme toggle, the summary/detailed views,
+   the nav states, and print.
    ============================================================ */
 
 /* Marks that scripting runs, so script-only states (the top-bar name) can hide safely. */
@@ -35,6 +36,41 @@ document.getElementById("year").textContent = new Date().getFullYear();
   });
 })();
 
+/* ---- Summary / detailed views ----
+   Summary is the default; ?view=detailed opens the full CV and is kept in the URL
+   so either view can be shared. Print follows whichever view is on screen. */
+(function views() {
+  const root = document.documentElement;
+  const VIEWS = ["summary", "detailed"];
+  const fromUrl = new URLSearchParams(window.location.search).get("view");
+  const switcher = document.querySelector("[data-view-switch]");
+
+  const apply = (view, { push = false } = {}) => {
+    root.setAttribute("data-view", view);
+    document.querySelectorAll(".view__btn").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.setView === view));
+    });
+    if (push) {
+      const url = new URL(window.location.href);
+      if (view === "detailed") url.searchParams.set("view", "detailed");
+      else url.searchParams.delete("view");
+      history.replaceState(null, "", url);
+    }
+    window.dispatchEvent(new Event("viewchange"));
+  };
+
+  apply(VIEWS.includes(fromUrl) ? fromUrl : "summary");
+  if (switcher) switcher.hidden = false;
+  document.querySelectorAll("[data-set-view]").forEach((el) => {
+    el.hidden = false;
+    el.addEventListener("click", () => {
+      apply(el.dataset.setView, { push: true });
+      const target = el.dataset.scroll && document.getElementById(el.dataset.scroll);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+})();
+
 /* ---- Sticky nav shadow ---- */
 (function navShadow() {
   const nav = document.getElementById("nav");
@@ -64,6 +100,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     let active = atBottom ? entries[entries.length - 1] : null;
     if (!active) {
       for (const e of entries) {
+        if (!e.section.offsetParent) continue; // hidden in the current view
         if (e.section.getBoundingClientRect().top <= OFFSET) active = e;
       }
     }
@@ -79,6 +116,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
+  window.addEventListener("viewchange", onScroll);
 })();
 
 /* ---- Print / save as PDF ----
